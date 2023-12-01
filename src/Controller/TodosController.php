@@ -18,6 +18,21 @@ class TodosController extends AbstractController
         $todos = $respository->findAll();
         return $this->render('todo/index.html.twig', ['todos' => $todos]);
     }
+    #[Route('/{id<\d+>}', name: 'todo.detail')]
+    public function findById(ManagerRegistry $doctrine, int $id):Response
+    {
+        $repository = $doctrine->getRepository(Todo::class);
+        $todo = $repository->find($id);
+        return $this->render('todo/detail.html.twig', ['todo' => $todo]);
+    }
+
+    #[Route('/id<\d+>', name: 'todo.detail')]
+    public function findById_with(Todo $todo){
+        if(!$todo){
+           
+        }
+        return $this->render('todo/detail.html.twig', ['todo' => $todo]);
+    }
     #[Route('/add', name: 'todo.add')]
     public function addTodo(ManagerRegistry $doctrine): Response
     {

@@ -30,9 +30,11 @@
         <h1 class="text-2xl uppercase text-center font-mono">Todo liste</h1>
         <div class=" list-none">
             {% for todo in todos %}
-                <li class="text-xl flex text-black justify-between" >
-                    <span class="text-white uppercase">{{ todo.author }}</span> {{ todo.tache }}
-                </li>
+                <a href="{{ path('todo.detail', {id: todo.id()}) }}">
+                    <li class="text-xl flex text-black justify-between" >
+                        <span class="text-white uppercase">{{ todo.author }}</span> {{ todo.tache }}
+                    </li>
+                </a>
             {% endfor %}
         </div>
     </div>
